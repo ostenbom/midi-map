@@ -42,8 +42,11 @@ const (
 	outRecordTrack3 = 16
 )
 
+var countCommands int
+
 func main() {
 	defer midi.CloseDriver()
+	countCommands = 0
 
 	fmt.Printf("outports: %v\n",  midi.GetOutPorts())
 	fmt.Printf("inports: %v\n",  midi.GetInPorts())
@@ -96,10 +99,12 @@ func main() {
 	<- done
 
 	fmt.Println("shutting down...")
+	fmt.Printf("%d commands used this session\n", countCommands)
 	stop()
 }
 
 func mapCC(cc uint8, send func(uint8) error) {
+	countCommands++
 	var err1, err2, err3, err4 error
 	switch cc {
 	case inPlay1:
