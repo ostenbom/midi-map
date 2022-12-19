@@ -51,9 +51,9 @@ func main() {
 	fmt.Printf("outports: %v\n",  midi.GetOutPorts())
 	fmt.Printf("inports: %v\n",  midi.GetInPorts())
 
-	mpkIn, err := midi.FindInPort("MPKmini2")
+	mpkIn, err := midi.FindInPort("SoftStep Control Surface")
 	if err != nil {
-		fmt.Println("can't find MPKmini2")
+		fmt.Println("can't find SoftStep Control Surface")
 		return
 	}
 
